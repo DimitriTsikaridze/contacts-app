@@ -1,4 +1,11 @@
-const Contact = ({ contactData, checkedIds, onToggleContactFromList }) => {
+import "./contact.css";
+
+const Contact = ({
+  contactData,
+  checkedIds,
+  onToggleContactFromList,
+  onDeleteContact,
+}) => {
   return (
     <tr>
       <td>
@@ -9,7 +16,10 @@ const Contact = ({ contactData, checkedIds, onToggleContactFromList }) => {
         />
       </td>
       <td>
-        <i className="fa fa-trash-o" />
+        <i
+          onClick={() => onDeleteContact(contactData.id)}
+          className="fa fa-trash-o delete"
+        />
       </td>
       <td>
         <i className="fa fa-pencil"></i>

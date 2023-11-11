@@ -2,7 +2,7 @@ import { useState } from "react";
 import Contact from "../Contact";
 import "./contactList.css";
 
-const ContactList = ({ contacts, onSetContacts }) => {
+const ContactList = ({ contacts, onSetContacts, onDeleteContact }) => {
   const [checkedIds, setCheckedIds] = useState([]);
 
   const checkAll = (e) => {
@@ -35,7 +35,7 @@ const ContactList = ({ contacts, onSetContacts }) => {
     } else {
       onSetContacts((contacts) => {
         const filteredList = contacts.filter(
-          (contact) => !checkedIds.includes(contact.id),
+          (contact) => !checkedIds.includes(contact.id)
         );
         localStorage.setItem("contacts", JSON.stringify(filteredList));
         return filteredList;
@@ -72,6 +72,7 @@ const ContactList = ({ contacts, onSetContacts }) => {
       <tbody>
         {contacts.map((contact, i) => (
           <Contact
+            onDeleteContact={(id) => onDeleteContact(id)}
             onToggleContactFromList={toggleContactFromList}
             checkedIds={checkedIds}
             contactData={contact}
